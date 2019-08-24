@@ -6,9 +6,10 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ProjectDisplayComponent } from './project-display/project-display.component';
 import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
-  declarations: [AppComponent, ProjectDisplayComponent, RegisterComponent],
+  declarations: [AppComponent, ProjectDisplayComponent, RegisterComponent, LoginComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]
