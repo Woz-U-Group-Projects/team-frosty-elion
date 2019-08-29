@@ -3,22 +3,8 @@ var router = express.Router();
 var models = require('../models');
 var authService = require('../services/auth');
 
-/* GET users listing. */
-router.get('/profile', function (req, res, next) {
-  let token = req.cookies.jwt;
-  authService.verifyUser(token)
-    .then(user => {
-      if (user) {
-        res.send(JSON.stringify(user));
-      } else {
-        res.status(401);
-        res.send('Must be logged in');
-      }
-    })
-});
-
 // Create new user if one doesn't exist
-router.post('/signup', function(req, res, next) {
+router.post('/register', function (req, res, next) {
   models.users
     .findOrCreate({
       where: {
@@ -28,10 +14,10 @@ router.post('/signup', function(req, res, next) {
         FirstName: req.body.firstName,
         LastName: req.body.lastName,
         Email: req.body.email,
-        Password: req.body.password
+        Password: authService.hashPassword(req.body.password) //<--- Change to this code here
       }
     })
-    .spread(function(result, created) {
+    .spread(function (result, created) {
       if (created) {
         res.send('User successfully created');
       } else {
@@ -44,8 +30,7 @@ router.post('/signup', function(req, res, next) {
 router.post('/login', function (req, res, next) {
   models.users.findOne({
     where: {
-      Username: req.body.username,
-      Password: req.body.password
+      Username: req.body.username
     }
   }).then(user => {
     if (!user) {
@@ -53,16 +38,25 @@ router.post('/login', function (req, res, next) {
       return res.status(401).json({
         message: "Login Failed"
       });
-    }
-    if (user) {
-      let token = authService.signUser(user);
-      res.cookie('jwt', token);
-      res.send('Login successful');
     } else {
-      console.log('Wrong password');
-      res.redirect('login')
+      let passwordMatch = authService.comparePasswords(req.body.password, user.Password);
+      if (passwordMatch) {
+        let token = authService.signUser(user);
+        res.cookie('jwt', token);
+        res.send('Login successful');
+      } else {
+        console.log('Wrong password');
+        res.send('Wrong password');
+      }
     }
   });
+});
+
+// Logout
+router.get("/logout", function(req, res, next) {
+  // set a new jwt cookie that will immediately expire
+  res.cookie("jwt", "", { expires: new Date(0) });
+  res.json("Logged out");
 });
 
 module.exports = router;
