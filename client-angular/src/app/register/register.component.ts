@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
   user: User = new User();
 
   constructor(private userService: UserService, private router: Router) { }
-
+  
   register(): void {
     this.userService.register(this.user).subscribe(() => {
       // user registered, send them to the login page

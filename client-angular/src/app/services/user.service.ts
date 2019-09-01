@@ -38,4 +38,9 @@ export class UserService {
   logout(): Observable<string> {
     return this.http.get<string>(this.url + "logout", this.options);
   }
+
+  // validate token
+  validateToken(): Observable<boolean> {
+    return this.http.get<boolean>(this.url + "validateToken", this.options);
+  }
 }

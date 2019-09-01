@@ -13,9 +13,6 @@ export class LoginComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router) {}
 
-  submitted = false;
-  onSubmit() { this.submitted = true; }
-
   login(): void {
     this.userService.login(this.user).subscribe(() => {
       this.userService.getProfile().subscribe(() => {
