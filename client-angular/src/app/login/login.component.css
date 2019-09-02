@@ -1,12 +1,18 @@
 /* Bordered form */
 form {
     border-radius: 16px;
-    margin-top: 250px;
+    margin-top: 100px;
     box-shadow: 0 4px 8px 0 black;
     justify-self: center;
+    background: lightgrey;
   }
 
   label {
+    font-family: 'Roboto', sans-serif;
+  }
+
+  h1 {
+    text-align: center;
     font-family: 'Roboto', sans-serif;
   }
   
@@ -19,6 +25,7 @@ form {
     border: 1px solid #ccc;
     border-radius: 16px;
     box-sizing: border-box;
+    background: whitesmoke;
   }
   
   /* Set a style for all buttons */
