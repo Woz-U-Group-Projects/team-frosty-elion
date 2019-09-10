@@ -7,7 +7,9 @@ var authService = require('../service/auth');
 router.post('/register', function(req, res, next) {
   models.users
     .findOrCreate({
-      where: { Username: req.body.username },
+      where: { 
+        Username: req.body.username 
+      },
       defaults: {
         FirstName: req.body.firstName,
         LastName: req.body.lastName,
@@ -63,7 +65,7 @@ router.get("/profile", function (req, res, next) {
           })
           .then(result => {
             console.log(result);
-            res.render("profile", { user: result[0] });
+            res.render("/profile", { user: result[0] });
           });
       } else {
         res.status(401);

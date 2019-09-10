@@ -33,6 +33,6 @@ var authService = {
   comparePasswords: function(plainTextPassword, hashedPassword) {
     return bcrypt.compareSync(plainTextPassword, hashedPassword);
   }
-}
+};
 
 module.exports = authService;
