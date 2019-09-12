@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { UserService } from "../services/user.service";
+import { User } from "../model/user";
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile',
@@ -6,10 +9,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  user: User = new User();
 
-  constructor() { }
+  constructor(private userService: UserService) {
+  }
 
   ngOnInit() {
+    // find the profile for the current user based on their token
+    this.userService.getProfile().subscribe(user => this.user = user);
   }
 
 }

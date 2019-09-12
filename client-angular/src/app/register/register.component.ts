@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { User } from "../model/user";
 import { UserService } from "../services/user.service";
 import { Router } from "@angular/router";
@@ -20,7 +20,6 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }

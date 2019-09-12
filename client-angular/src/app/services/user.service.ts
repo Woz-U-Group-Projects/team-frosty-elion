@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../model/user';
-import { Observable } from 'rxjs';
+import { Observable, pipe } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,37 +11,30 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  // options allows us to flag that we are using credentials(cookies)
-  options = { withCredentials: true };
-
-  // boolean value to hold the login status
-  loggedIn: boolean = false;
-
   // base url of the express back end
   url: string = "http://localhost:3000/users/";
 
   // POST baserl/register
-  register(user: User): Observable<string> {
-    return this.http.post<string>(this.url + "register", user, this.options);
+  register(user:User): Observable<string> {
+    return this.http.post<string>(this.url + "register", user);
   }
 
   // login a user
-  login(user: User): Observable<string> {
-    return this.http.post<string>(this.url + "login", user, this.options);
+  login(user:User): Observable<string> {
+    return this.http.post<string>(this.url + "login", user)
+      .pipe(map(user => {
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        return user;
+      }));
   }
 
   // get a user profile
   getProfile(): Observable<User> {
-    return this.http.get<User>(this.url + "profile", this.options);
+    return this.http.get<User>(this.url + "profile")
   }
 
   // logout
-  logout(): Observable<string> {
-    return this.http.get<string>(this.url + "logout", this.options);
-  }
-
-  // validate token
-  validateToken(): Observable<boolean> {
-    return this.http.get<boolean>(this.url + "validateToken", this.options);
+  logout(): Observable<any> {
+    return this.http.get(this.url + "logout");
   }
 }

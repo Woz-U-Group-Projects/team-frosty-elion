@@ -7,11 +7,13 @@ var authService = require('../service/auth');
 router.post('/register', function(req, res, next) {
   models.users
     .findOrCreate({
-      where: { Username: req.body.username },
+      where: { 
+        Username: req.body.username,
+        Email: req.body.email
+      },
       defaults: {
         FirstName: req.body.firstName,
         LastName: req.body.lastName,
-        Email: req.body.email,
         Password: authService.hashPassword(req.body.password) 
       }
     })
@@ -25,12 +27,32 @@ router.post('/login', function (req, res, next) {
   models.users
     .findOne({ where: { Username: req.body.username } })
     .then(user => {
-      res.send(JSON.stringify(user));
+      if (!user) {
+        console.log('User not found')
+        return res.status(401).json({
+          message: "Login Failed"
+        });
+      } else {
+        let passwordMatch = authService.comparePasswords(req.body.password, user.Password);
+        if (passwordMatch) {
+          let token = authService.signUser(user);
+          user.token = token;
+          res.json(user);
+        } else {
+          console.log('Wrong password');
+          res.send('Wrong password');
+        }
+      }
     });
 });
 
+// Profile
+router.get('/profile', function(req, res, next) {
+  res.send(JSON.stringify(models.user));
+});
+
 // Logout
-router.get("/logout", function(req, res, next) {
+router.get('/logout', function(req, res, next) {
   res.cookie("jwt", "", { expires: new Date(0) });
   res.json("Logged out");
 });
