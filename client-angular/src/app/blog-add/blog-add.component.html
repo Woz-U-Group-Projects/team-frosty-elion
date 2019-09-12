@@ -5,7 +5,7 @@
           <label for="title">Title</label>
         </div>
         <div class="col-75">
-          <input type="text" id="title" name="title" placeholder="Your title..">
+          <input [(ngModel)]="newPost.title" type="text" id="title" name="title" placeholder="Your title..">
         </div>
       </div>
       <div class="row">
@@ -13,7 +13,7 @@
           <label for="subject">Your Post</label>
         </div>
         <div class="col-75">
-          <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+          <textarea [(ngModel)]="newPost.post" id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
         </div>
       </div>
       <div class="row">
