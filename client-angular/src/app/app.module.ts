@@ -5,11 +5,13 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from "./app-routing.module";
 
 import { AppComponent } from "./app.component";
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { BlogListComponent } from './blog-list/blog-list.component';
+import { BlogAddComponent } from './blog-add/blog-add.component';
+import { BlogEditComponent } from './blog-edit/blog-edit.component';
 
 @NgModule({
-  declarations: [AppComponent, RegisterComponent, LoginComponent],
+  declarations: [AppComponent, HomeComponent, BlogListComponent, BlogAddComponent, BlogEditComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]

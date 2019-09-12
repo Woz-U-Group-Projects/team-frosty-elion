@@ -6,8 +6,7 @@ var models = require("./models");
 var cors = require("cors");
 
 var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
-var projectsRouter = require("./routes/projects");
+
 
 var app = express();
 
@@ -25,8 +24,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(cors({ origin: "http://localhost:4200", credentials: true }));
 
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
-app.use("/projects", projectsRouter);
+
+
 
 models.sequelize.sync().then(function() {
   console.log("DB Sync'd up");

@@ -1,17 +1,26 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { BlogListComponent } from './blog-list/blog-list.component';
+import { BlogAddComponent } from './blog-add/blog-add.component';
+import { BlogEditComponent } from './blog-edit/blog-edit.component';
 
 const routes: Routes = [
   {
-    path: 'register',
-    component: RegisterComponent
+    path: '',
+    component: HomeComponent
   },
   {
-    path: 'login',
-    component: LoginComponent
+    path: 'list',
+    component: BlogListComponent
+  },
+  {
+    path: 'add',
+    component: BlogAddComponent
+  },
+  {
+    path: 'edit/:id',
+    component: BlogEditComponent
   }
 ];
 
