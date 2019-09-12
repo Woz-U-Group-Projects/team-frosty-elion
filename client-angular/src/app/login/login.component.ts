@@ -14,12 +14,12 @@ export class LoginComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) {}
 
   login(): void {
-    this.userService.login(this.user).subscribe(() => {
+    this.userService.login().subscribe(() => {
       this.userService.getProfile().subscribe(() => {
         // set the user to logged in
         this.userService.loggedIn = true;
         // send to the profile page
-        this.router.navigate(["profile"]);
+        this.router.navigate(["/profile"]);
       });
     });
   }
