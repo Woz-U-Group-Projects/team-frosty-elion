@@ -9,7 +9,7 @@ import { Observable, of } from 'rxjs';
 export class BlogService {
 
   // base url of the express back end
-url: string = "http://localhost:3000/blogs";
+url: string = "http://localhost:3000/";
 
 getPost(): Observable<Blog[]> {
   return this.http.get<Blog[]>(this.url);
