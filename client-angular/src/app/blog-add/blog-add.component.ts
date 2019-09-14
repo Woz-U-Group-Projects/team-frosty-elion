@@ -14,8 +14,9 @@ export class BlogAddComponent implements OnInit {
   newPost: Blog = new Blog();
 
   addPost() {
+    console.log("Posting")
     this.blogService.addPost(this.newPost).subscribe(
-      b => this.router.navigate(["list"])
+      p => this.router.navigateByUrl('list')
     );
   }
 
