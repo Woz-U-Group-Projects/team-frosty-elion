@@ -1,5 +1,5 @@
 <div class="container">
-  <form action="action_page.php">
+  <form (ngSubmit)="onSubmit()" method="POST">
     <div class="row">
       <div class="col-25">
         <label for="title">Title</label>
@@ -13,12 +13,12 @@
         <label for="subject">Your Post</label>
       </div>
       <div class="col-75">
-        <textarea [(ngModel)]="newPost.post" id="subject" name="subject" placeholder="Write something.."
+        <textarea [(ngModel)]="newPost.post" id="post" name="post" placeholder="Write something.."
           style="height:200px"></textarea>
       </div>
     </div>
     <div class="row">
-      <input type="submit" (click)="addPost()" value="Add Post">
+      <button>Add Blog Post</button>
     </div>
   </form>
 </div>

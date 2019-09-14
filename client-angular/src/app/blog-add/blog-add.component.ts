@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Blog } from '../blog';
 import { BlogService } from '../services/blog.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-blog-add',
@@ -10,19 +11,20 @@ import { Router } from '@angular/router';
 })
 
 export class BlogAddComponent implements OnInit {
+  private blogRoute = 'http://localhost:3000/blogs';
+  
+  constructor(private blogService: BlogService, private router: Router,private http:HttpClient) { }
 
   newPost: Blog = new Blog();
 
-  addPost() {
-    console.log("Posting")
-    this.blogService.addPost(this.newPost).subscribe(
-      p => this.router.navigateByUrl('list')
-    );
+  onSubmit(){
+    this.http.post(this.blogRoute,this.newPost).subscribe((res: Response)=> {
+      this.router.navigate(['list'])
+    })
   }
 
-  constructor(private blogService: BlogService, private router: Router) { }
-
   ngOnInit() {
+    
   }
 
 }
