@@ -1,5 +1,5 @@
 <div class="container">
-  <form (ngSubmit)="onSubmit()" method="POST">
+  <form method="POST">
     <div class="row">
       <div class="col-25">
         <label for="title">Title</label>
@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="row">
-      <button>Add Blog Post</button>
+      <button (click)="addBlog()" type="submit">Add Blog Post</button>
     </div>
   </form>
 </div>
