@@ -36,8 +36,11 @@ router.post('/login', function (req, res, next) {
         let passwordMatch = authService.comparePasswords(req.body.password, user.Password);
         if (passwordMatch) {
           let token = authService.signUser(user);
-          user.token = token;
-          res.json(user);
+          res.status(200).send({
+            auth: true,
+            accessToken: token,
+            username: user.username
+          });
         } else {
           console.log('Wrong password');
           res.send('Wrong password');
@@ -47,34 +50,18 @@ router.post('/login', function (req, res, next) {
 });
 
 // Profile
-router.get('/profile', function(req, res, next) {
-  res.send(JSON.stringify(models.user));
-});
-
-// Logout
-router.get('/logout', function(req, res, next) {
-  res.cookie("jwt", "", { expires: new Date(0) });
-  res.json("Logged out");
-});
-
-// validate a token
-router.get("/validateToken", function(req, res, next) {
-  // check to see if there is a token
-  let token = req.cookies.jwt;
-  if (token) {
-    // validate the user from the token (same as finding profile)
-    authService.verifyUser(token).then(user => {
-      if (user) {
-        // token valid, return true
-        res.json(true);
-      } else {
-        // token invalid, return false
-        res.json(false);
-      }
-    });
+router.get('/profile', function (req, res, next) {
+  let token = req.headers['x-access-token'];
+  if(token) {
+    authService
+      .verifyUser(token)
+      .then(user => {
+        if(user) { res.send(JSON.stringify(user)); } 
+        else { res.status(500).send({auth: false}); }
+      });
   } else {
-    // no token, return false
-    res.json(false);
+    res.status(403);
+    res.send('Must be logged in');
   }
 });
 

@@ -1,7 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from "../services/user.service";
-import { User } from "../model/user";
-import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile',
@@ -9,7 +7,7 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  user: User = new User();
+  user: any;
 
   constructor(private userService: UserService) {
   }

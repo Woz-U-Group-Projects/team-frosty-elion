@@ -10,10 +10,12 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 
+import { AuthInterceptor } from './services/auth/interceptor';
+
 @NgModule({
   declarations: [AppComponent, RegisterComponent, LoginComponent, HomeComponent, ProfileComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
-  providers: [],
+  providers: [AuthInterceptor],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
