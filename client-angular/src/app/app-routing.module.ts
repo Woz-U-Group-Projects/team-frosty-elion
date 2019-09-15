@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import { ProfileComponent } from './profile/profile.component';
+import { BlogListComponent } from './blog-list/blog-list.component';
+import { BlogAddComponent } from './blog-add/blog-add.component';
+import { BlogEditComponent } from './blog-edit/blog-edit.component';
 
 const routes: Routes = [
   {
@@ -12,16 +11,16 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'register',
-    component: RegisterComponent
+    path: 'list',
+    component: BlogListComponent
   },
   {
-    path: 'login',
-    component: LoginComponent
+    path: 'add',
+    component: BlogAddComponent
   },
   {
-    path: 'profile',
-    component: ProfileComponent
+    path: 'edit/:id',
+    component: BlogEditComponent
   }
 ];
 
