@@ -1,0 +1,8 @@
+<div class="bg-img">
+    <div class="topnav">
+        <a routerLink="/" routerLinkActive="active" style="float: left">Home</a>
+        <a *ngIf="!userService.loggedIn" routerLink="login" routerLinkActive="active">Login</a>
+        <a *ngIf="!userService.loggedIn" routerLink="register" routerLinkActive="active">Register</a>
+        <a *ngIf="userService.loggedIn" href="">Logout</a>
+    </div>
+</div>

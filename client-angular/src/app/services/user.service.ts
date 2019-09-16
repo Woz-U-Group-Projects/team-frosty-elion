@@ -1,7 +1,6 @@
 import { Injectable, Input } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../model/user';
-import { JwtResponse } from '../model/jwt-response';
 import { Observable } from 'rxjs';
 
 const httpOptions = {
@@ -15,21 +14,42 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
+  // options allows us to flag that we are using credentials, which will allow the jtw cookie on all requests
+  options = { withCredentials: true };
+
   // base url of the express back end
-  private url: string = "http://localhost:3000/users/";
+  url: string = "http://localhost:3000/users/";
 
-  // POST baserl/register
-  register(user:User): Observable<string> {
-    return this.http.post<string>(this.url + "register", user, httpOptions);
+  // boolean value to hold the login status
+  loggedIn: boolean = false;
+
+  // register a user, must .subscribe() to trigger
+  // POST baserl/signup
+  register(user: User): Observable<string> {
+    return this.http.post<string>(this.url + "register", user, this.options);
   }
 
-  // login a user
-  login(user:User): Observable<JwtResponse> {
-    return this.http.post<JwtResponse>(this.url + "login", user, httpOptions);
+  // login a user, must .subscribe() to trigger
+  // POST baseurl/login
+  login(user: User): Observable<string> {
+    return this.http.post<string>(this.url + "login", user, this.options);
   }
 
-  // get a user profile
-  getProfile(): Observable<any> {
-    return this.http.get<any>(this.url + "profile");
+  // get a user profile, must .subscribe() to trigger
+  // GET baseurl/profile
+  getProfile(): Observable<User> {
+    return this.http.get<User>(this.url + "profile", this.options);
+  }
+
+  // logout, must .subscribe() to trigger
+  // GET baseurl/logout
+  logout(): Observable<string> {
+    return this.http.get<string>(this.url + "logout", this.options);
+  }
+
+  // validate a token, must .subscribe() to trigger
+  // GET baseurl/validateToken
+  validateToken(): Observable<boolean> {
+    return this.http.get<boolean>(this.url + "validateToken", this.options);
   }
 }

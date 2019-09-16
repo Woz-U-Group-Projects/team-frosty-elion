@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TokenStorageService} from '../services/token-storage.service';
 
 @Component({
   selector: 'app-home',
@@ -7,15 +6,9 @@ import { TokenStorageService} from '../services/token-storage.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  info: any;
 
-  constructor(private token: TokenStorageService) { }
+  constructor() { }
 
-  ngOnInit() {
-    this.info = {
-      token: this.token.getToken(),
-      username: this.token.getUsername()
-    }
-  }
+  ngOnInit() { }
 
 }
