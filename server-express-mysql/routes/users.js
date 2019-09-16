@@ -87,25 +87,4 @@ router.get("/logout", function(req, res, next) {
   res.json("Logged out");
 });
 
-// validate a token
-router.get("/validateToken", function(req, res, next) {
-  // check to see if there is a token
-  let token = req.cookies.jwt;
-  if (token) {
-    // validate the user from the token (same as finding profile)
-    authService.verifyUser(token).then(user => {
-      if (user) {
-        // token valid, return true
-        res.json(true);
-      } else {
-        // token invalid, return false
-        res.json(false);
-      }
-    });
-  } else {
-    // no token, return false
-    res.json(false);
-  }
-});
-
 module.exports = router;
