@@ -7,7 +7,7 @@ var models = require("./models");
 var cors = require("cors");
 
 var indexRouter = require("./routes/index");
-
+var blogRouter = require('./routes/blogs');
 
 var app = express();
 
@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(cors({ origin: "http://localhost:4200", credentials: true }));
 
 app.use("/", indexRouter);
-
+app.use("/blogs", blogRouter);
 
 
 models.sequelize.sync().then(function() {

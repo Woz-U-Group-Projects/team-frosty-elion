@@ -11,15 +11,14 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class BlogAddComponent implements OnInit {
-  private blogRoute = 'http://localhost:3000/blogs';
   
   constructor(private blogService: BlogService, private router: Router,private http:HttpClient) { }
 
   newPost: Blog = new Blog();
 
-  onSubmit(){
-    this.http.post(this.blogRoute,this.newPost).subscribe((res: Response)=> {
-      this.router.navigate(['list'])
+  addBlog(): void{
+    this.blogService.addBlog(this.newPost).subscribe(()=> {
+      this.router.navigate(['list']);
     })
   }
 

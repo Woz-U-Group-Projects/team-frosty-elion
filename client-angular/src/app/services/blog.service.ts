@@ -9,30 +9,29 @@ import { Router } from '@angular/router';
 })
 export class BlogService {
 
+  constructor(private router: Router, private http: HttpClient) { }
+
   // base url of the express back end
-url: string = "http://localhost:3000/blogs";
+  url: string = "http://localhost:3000/blogs";
 
-getPost(): Observable<Blog[]> {
-  return this.http.get<Blog[]>(this.url);
-}
+  getPost(): Observable<Blog[]> {
+    return this.http.get<Blog[]>(this.url);
+  }
 
-grabBlog(id:number) : Observable<Blog> {
-  return this.http.get<Blog>(this.url + "" + id);
-}
+  grabBlog(id:number) : Observable<Blog> {
+    return this.http.get<Blog>(this.url + "/" + id);
+  }
 
-addBlogs(blog : Blog) : Observable<Blog>{
-  return this.http.post<Blog>(this.url, blog);
-}
+  addBlog(blog : Blog) : Observable<Blog>{
+    return this.http.post<Blog>(this.url + "/addBlog", blog);
+  }
 
-deleteBlog(id:number) : Observable<Blog>{
-  return this.http.delete<Blog>(this.url + "" + id);
-}
-  
-editBlog(blog : Blog) : Observable<Blog>{
-  return this.http.put<Blog>(this.url + "" + blog.id, blog);
-}
+  deleteBlog(id:number) : Observable<Blog>{
+    return this.http.delete<Blog>(this.url + "/" + id);
+  }
+    
+  editBlog(blog : Blog) : Observable<Blog>{
+    return this.http.put<Blog>(this.url + "" + blog.id, blog);
+  }
 
-constructor(private router: Router, private http: HttpClient) { }
-
-  
 }

@@ -7,8 +7,15 @@ router.get("", function (req, res, next) {
   res.send("respond with a resource");
 });
 
+router.post("/addBlog", function(req, res, next) {
+  models.blogs.create(req.body)
+    .then(newPost => {
+      res.send(JSON.stringify(newPost));
+    })
+});
+
 router.get("/list", function (req, res, next) {
-  res.render("list");
+  res.send(JSON.stringify(models.blogs));
 });
 
 module.exports = router;
