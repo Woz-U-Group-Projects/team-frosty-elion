@@ -40,10 +40,10 @@ router.post('/blogs', function (req, res, next) {
 
 /* PUT blog posts */
 router.put("/blogs/:id", function (req, res, next) {
-  let blogsId = parseInt(req.params.id);
+  let blogId = parseInt(req.params.id);
   models.blogs
-    .update(req.body, { where: { id: blogsId } })
-    .then(result => res.redirect('/blogs/' + blogsId))
+    .update(req.body, { where: { id: blogId } })
+    .then(result => res.redirect('/blogs/' + blogId))
     .catch(err => {
       res.status(400);
       res.send("There was a problem updating the actor.  Please check the actor information.");
@@ -54,7 +54,6 @@ router.put("/blogs/:id", function (req, res, next) {
 /* DELETE blog posts */
 router.delete('/blogs/:id', function(req, res, next) {
   let blogId = parseInt(req.params.id);
-
   models.blogs
     .destroy({ where: { id: blogId }})
     .then(result => res.redirect('/blogs'))

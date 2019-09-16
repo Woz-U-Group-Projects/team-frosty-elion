@@ -1,31 +1,33 @@
-"use strict";
+/* jshint indent: 2 */
 
-module.exports = (sequelize, DataTypes) => {
-  var blogs = sequelize.define(
-    "blogs", {
-      postId: {
-        type: DataTypes.INTEGER(5).UNSIGNED,
-        primaryKey: true,
-        autoIncrement: true,
-        allowNull: false,
-        unique: true
-      },
-      title: {
-        type: DataTypes.STRING(255),
-        allowNull: true
-      },
-      post: {
-        type: DataTypes.STRING(255),
-        allowNull: true
-      },
-      last_update: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
-      }
-    }, 
-    {}
-  );
-
-  return blogs;
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('blogs', {
+    id: {
+      type: DataTypes.INTEGER(11),
+      allowNull: false,
+      primaryKey: true
+    },
+    postId: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    title: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    post: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: true
+    }
+  }, {
+    tableName: 'blogs'
+  });
 };

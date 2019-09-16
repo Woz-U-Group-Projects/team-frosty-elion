@@ -19,11 +19,11 @@ export class BlogService {
   }
 
   grabBlog(id:number) : Observable<Blog> {
-    return this.http.get<Blog>(this.url + "/" + id);
+    return this.http.get<Blog>(this.url + "" + id);
   }
 
   addBlog(blog : Blog) : Observable<Blog>{
-    return this.http.post<Blog>(this.url + "/addBlog", blog);
+    return this.http.post<Blog>(this.url + "/", blog);
   }
 
   deleteBlog(id:number) : Observable<Blog>{
