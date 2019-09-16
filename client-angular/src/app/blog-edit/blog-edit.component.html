@@ -1,3 +1,7 @@
-<p id="editEntry">Edit Entry: <input id="editInput" [(ngModel)]="editBlog.post"></p>
-<div class="saveButtonDiv"><button id="saveButton" (click)="saveBlog()">Save</button>
+<div class="container" (click)="saveBlog()">
+    <p id="editTitle">Edit Title: <input id="editTitle" [(ngModel)]="editBlog.title"></p>
+    <p id="editPost">Edit Post: <input id="editPost" [(ngModel)]="editBlog.post"></p>
+    <div class="saveButtonDiv">
+        <button id="saveButton" type="submit">Save</button>
+    </div>
 </div>

@@ -10,13 +10,14 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./blog-edit.component.css']
 })
 export class BlogEditComponent implements OnInit {
+  editBlog: Blog = new Blog();
   private blogRoute = 'http://localhost:3000/blogs';
   constructor(private blogService: BlogService, private router: Router,private  http:HttpClient) { }
 
-  editBlog: Blog = new Blog();
+  
 
   saveBlog() {
-    this.blogService.editBlog(this.editBlog).subscribe(blogs => this.router.navigate(["edit"]));
+    this.blogService.editBlog(this.editBlog).subscribe(blogs => this.router.navigate(["list"]));
   }
 
  

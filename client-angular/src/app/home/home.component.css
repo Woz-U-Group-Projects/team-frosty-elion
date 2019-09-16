@@ -1,0 +1,12 @@
+/* Style the container */
+.container {
+    border-radius: 12px;
+    background-color: #ccc9;
+    padding: 20px;
+    margin-top: 50px;
+    box-shadow: 0 4px 8px 0 black;
+}
+
+h1 {
+    text-align: center;
+}

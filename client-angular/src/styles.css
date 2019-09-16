@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-body {
-    background-color: lightgrey;
-}
+    html { 
+        background: url(https://cdn.craigdailypress.com/wp-content/uploads/sites/10/2019/07/shutterstock_749969473-1024x683.jpg) no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    } 

@@ -15,20 +15,20 @@ label {
 }
 
 /* Style the submit button */
-input[type=submit] {
-  background-color: #4CAF50;
-  color: white;
+button[type=submit] {
+  background-color: rgba(76, 175, 79, 0.473);
+  color: black;
   padding: 12px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  float: right;
+  width: 100%;
 }
 
 /* Style the container */
 .container {
   border-radius: 12px;
-  background-color: #f2f2f2;
+  background-color: #ccc9;
   padding: 20px;
   margin-top: 50px;
   box-shadow: 0 4px 8px 0 black;

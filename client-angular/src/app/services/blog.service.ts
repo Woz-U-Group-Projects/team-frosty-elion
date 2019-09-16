@@ -25,7 +25,7 @@ addBlogs(blog : Blog) : Observable<Blog>{
 }
 
 deleteBlog(id:number) : Observable<Blog>{
-  return this.http.delete<Blog>(this.url + "/" + id);
+  return this.http.delete<Blog>(this.url + "" + id);
 }
   
 editBlog(blog : Blog) : Observable<Blog>{
