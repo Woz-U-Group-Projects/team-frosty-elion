@@ -20,6 +20,7 @@ button[type=submit] {
     border-radius: 4px;
     cursor: pointer;
     width: 100%;
+    box-shadow: 0 4px 4px 0 black;
 }
 
 /* Add a hover effect for buttons */

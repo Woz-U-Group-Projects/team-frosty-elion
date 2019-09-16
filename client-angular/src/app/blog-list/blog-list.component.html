@@ -1,9 +1,11 @@
 <div class="container">
-    <h2>Blog List</h2>
-    <ul>
-        <li *ngFor="let blog of blogs">{{blog.title}}: {{blog.post}} <br>
-            <a [routerLink]="['/edit', blog.id]"><button id="edit">Edit</button></a>
-            <button id="delete" (click)="deleteBlog(blog.id)">Delete</button>
-        </li>
-    </ul>
+    <h1>Blog List</h1>
+    <div class="container">
+        <ul>
+            <li *ngFor="let blog of blogs">{{blog.title}}: {{blog.post}} <br>
+                <a [routerLink]="['/edit', blog.id]"><button id="edit" type="submit">Edit</button></a>
+                <button id="delete" (click)="deleteBlog(blog.id)" type="submit">Delete</button>
+            </li>
+        </ul>
+    </div>
 </div>
